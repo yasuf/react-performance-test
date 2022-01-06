@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 import { useState, useEffect } from 'react';
@@ -15,8 +14,9 @@ function App() {
       newElements.push({ title: `Element ${i}`});
     }
     setElements(newElements);
-    const endTime = performance.now();
-    console.log(`It took ${(endTime - startTime).toFixed(2)}ms to mount this component`);
+    setTimeout(() => {
+      console.log(`It took ${(performance.now() - startTime).toFixed(2)}ms to mount this component`);
+    }, 0)
   }, []);
 
   const replaceRowsData = () => {
@@ -26,12 +26,11 @@ function App() {
       newElements.push({ title: `Changed title ${i}`});
     }
     setElements(newElements);
+    setTimeout(() => {
+      const endTime = performance.now();
+      console.log(`This re-render took ${(endTime - startTime).toFixed(2)}ms`);
+    }, 0)
   };
-
-  setTimeout(() => {
-    const endTime = performance.now();
-    console.log(`This re-render took ${(endTime - startTime).toFixed(2)}ms`);
-  }, 0)
 
   return (
     <div className="App">
